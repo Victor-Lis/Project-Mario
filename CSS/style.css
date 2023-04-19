@@ -1,0 +1,539 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+/* Pré-definições de cenário */
+
+.game-bord{
+
+    background: linear-gradient(180deg, #00d9ff, white);
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+
+}
+
+body{
+
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+.game-body{
+
+    position: absolute;
+    width: 100vw;
+    height: 85vh;
+    bottom: 15vh;
+
+}
+
+.game-body > .sky{
+
+    position: absolute;
+    width: 100vw;
+    height: 35vh;
+    bottom: 50vh;
+
+}
+
+.game-body > .game-area{
+
+    position: absolute;
+    width: 100vw;
+    height: 50vh;
+    bottom: 0vh;
+
+}
+
+.game-bord > .floor{
+
+    position: absolute;
+    width: 100vw;
+    height: 15vh;
+    bottom: 0vh;
+
+} 
+
+
+/* Start */
+
+.start{
+
+    text-align: center;
+    
+    color: red;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 03rem;
+    top: 5vh;
+
+}
+
+
+/* Céu */
+
+
+.game-body > .sky > .clouds1, .clouds2, .clouds3, .clouds4, .clouds5, .clouds6{
+
+    position: absolute;
+    display: inherit;
+    
+}
+
+.timer{
+
+    margin: 2%;
+    border: 2px solid #000;
+    max-width: 5%;
+    padding: 1%;
+    z-index: 1;
+    text-align: center;
+    border-radius: 5px;
+    min-width: 100px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: red;
+    background-color: #9999;
+
+}
+
+.game-body > .sky > .clouds1{
+
+    top: 3vh;
+    width: 40vw;
+    height: 40vh;
+    opacity: 0.90;
+
+}
+
+.game-body > .sky > .clouds2{
+
+    top: 16vh;
+    width: 40vw;
+    height: 40vh;
+    opacity: 0.90;
+
+}
+
+.game-body > .sky > .clouds3{
+
+    top: 7.5vh;
+    width: 30vw;
+    height: 30vh;
+    opacity: 0.75;
+
+}
+
+.game-body > .sky > .clouds4{
+
+    top: 20.5vh;
+    width: 30vw;
+    height: 30vh;
+    opacity: 0.75;
+
+}
+
+.game-body > .sky > .clouds5{
+
+    top: 29vh;
+    width: 20vw;
+    height: 20vh;
+    opacity: 0.55;
+
+}
+
+.game-body > .sky > .clouds6{
+
+    top: 3vh;
+    width: 20vw;
+    height: 20vh;
+    opacity: 0.55;
+
+}
+
+.cloud-movement1{
+
+    animation: clouds-animation 5.0s linear infinite;
+
+}
+
+.cloud-movement2{
+
+    animation: clouds-animation 6.0s linear infinite;
+
+}
+
+.cloud-movement3{
+
+    animation: clouds-animation 8.5s linear infinite;
+
+}
+
+.cloud-movement4{
+
+    animation: clouds-animation 9.5s linear infinite;
+
+}
+
+.cloud-movement5{
+
+    animation: clouds-animation 11.5s linear infinite;
+
+}
+
+.cloud-movement6{
+
+    animation: clouds-animation 12.5s linear infinite;
+
+}
+
+
+/* Aréa do game */
+
+
+.game-area > .mario{
+
+    position: absolute;
+    width: 130px;
+    height: 130px;
+    bottom: 0px;
+    left: 0vw;
+
+}
+
+.game-area > .pipe{
+
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    bottom: 0vh;
+    right: 05vw;
+
+}
+
+.pipe-animation{
+
+    animation: pipe-animation 1.5s linear infinite;
+
+}
+
+.mario-animation{
+
+    animation: mario-animation 0.5s linear infinite;
+
+}
+
+.bricks-animation{
+
+    animation: bricks-animation 3.5s linear infinite;
+
+}
+
+.game-over-animation{
+
+    animation: game-over-animation 1.5s linear;
+
+}
+
+.bricks-grid{
+
+    display: none;
+    position: absolute;
+    width: 60px;
+    grid-template-columns: repeat(6, 1fr);
+    bottom: 115px;
+
+}
+
+.bricks-grid > img{
+
+    width: 30px;
+    height: 30px;
+
+}
+
+/* Chão */
+
+
+.game-bord > .floor > .grass{
+
+    background: linear-gradient(180deg, #32b000, #3fae2e);
+    position: absolute;
+    width: 100vw;
+    height: 05vh;
+    bottom: 10vh;
+
+} 
+
+.game-bord > .floor > .dirt{
+
+    background: linear-gradient(180deg, #a07800, #795a00);
+    position: absolute;
+    width: 100vw;
+    height: 10vh;
+    bottom: 0vh;
+
+} 
+
+
+/* End Game */
+
+.end-game{
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20%;
+    height: 45%;
+    z-index: 5;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    border-radius: 10px;
+    box-shadow: 02px 0px 15px #000;
+    padding: 1.5% 2.5%;
+    min-width: 220px;
+
+}
+
+.end-game > .pontuacao{
+
+    margin: 10px 0px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+
+}
+
+.end-game > .pontuacao > .description{
+
+    margin: 0px 10px;
+    font-size: 1rem;
+    font-weight: bold;
+
+}
+
+.end-game > .pontuacao > .value{
+
+    font-size: 0.9rem;
+
+}
+
+.end-game > .button-back{
+
+    margin-top: 45%;
+    color:rgb(255, 0, 0);
+    font-size: 0.75rem;
+    transition: 0.5s;
+    margin-bottom: 3.5%;
+    text-decoration: none;
+
+}
+
+.end-game > .button-back:hover{
+
+    filter: drop-shadow(0px 0px 4px rgb(255, 0, 0, 0.5));
+    font-size: 0.85rem;
+    transition: 1s;
+    cursor: pointer;
+
+}
+
+.end-game > .button-start{
+
+    color:rgb(0, 166, 255);
+    font-size: 1.25rem;
+    transition: 0.5s;
+    text-decoration: none;
+
+}
+
+.end-game > .button-start:hover{
+
+    filter: drop-shadow(0px 0px 4px rgb(0, 166, 255, 0.5));
+    font-size: 1.325rem;
+    transition: 1s;
+    cursor: pointer;
+
+}
+
+/*Animations*/
+
+
+@keyframes clouds-animation{ 
+
+    from{
+
+        right: -50vw;
+
+    }
+
+    to{ 
+
+        right: 110vw;
+
+    }
+     
+}
+
+@keyframes mario-animation{ 
+
+    0%{
+
+        bottom: 0px;
+
+    }
+
+    10%{
+
+        bottom: 25px;
+
+    }
+
+    20%{
+
+        bottom: 40px;
+
+    }
+
+    30%{
+
+        bottom: 55px;
+
+    }
+
+    40%{
+
+        bottom: 70px;
+
+    }
+
+    50%{
+
+        bottom: 85px;
+
+    }
+
+    60%{
+
+        bottom: 70px;
+
+    }
+
+    70%{
+
+        bottom: 70px;
+
+    }
+
+    80%{
+
+        bottom: 55px;
+
+    }
+
+    90%{
+
+        bottom: 55px;
+
+    }
+
+    100%{
+
+        bottom: 55px;
+
+    }
+
+}
+
+@media (min-width: 400px) {
+    
+    @keyframes pipe-animation{ 
+
+        from{
+    
+            right: -10vw;
+    
+        }
+    
+        to{ 
+    
+            right: 110vw;
+    
+        }
+         
+    }
+
+}
+
+@media (max-width: 400px) {
+    
+    @keyframes pipe-animation{ 
+
+        from{
+    
+            right: -30vw;
+    
+        }
+    
+        to{ 
+    
+            right: 110vw;
+    
+        }
+         
+    }
+
+}
+
+
+@keyframes bricks-animation{ 
+
+    from{
+
+        right: -30vw;
+
+    }
+
+    to{ 
+
+        right: 150vw;
+
+    }
+     
+}
+
+@keyframes game-over-animation{ 
+
+    from{
+
+        bottom: 0px;
+
+    }
+
+    to{ 
+
+        bottom: -50px;
+
+    }
+     
+}
+
+
+@media (max-width: 650px) {
+    .game-body > .sky > .clouds1, .clouds2, .clouds3, .clouds4, .clouds5, .clouds6{
+
+        display: none;
+
+    }
+}

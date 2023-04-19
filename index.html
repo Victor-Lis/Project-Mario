@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Mario Game</title>
+    
+    <script src="./JS/login.js" type="module" defer></script>
+    <link rel="stylesheet" href="./CSS/loginStyle.css">
+</head>
+<body>
+
+    <div class="container">
+        <form class="login-box">
+            <h1 class="form-title" id="title">Login</h1>
+                <div class="form-group" id="emailInput">
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group" id="usernameInput">
+                    <label for="username">Nome de usuário:</label>
+                    <input type="text" id="username" name="username">
+                </div>
+                <div class="form-group" id="passwordInput">
+                    <label for="password">Senha:</label>
+                    <input type="current-password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="form-button" id="button">Entrar</button>
+            <div class="sign-up">
+                <a id="tradePage">Cadastre-se aqui</a>
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

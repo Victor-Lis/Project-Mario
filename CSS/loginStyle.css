@@ -1,0 +1,115 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto&display=swap');
+
+*{
+
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    border: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+body {
+    background-color: #60baff;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-box{
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    width: 60%;
+    min-width: 100px;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 02px 0px 15px #000;
+
+}
+
+.form-title{
+
+    margin: 07.5%;
+
+}
+
+.form-group{
+
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    margin: 5px 0px;
+
+}
+
+.form-group > input{
+
+    background-color: rgba(153, 153, 153, 0.2);
+    padding: 2%;
+    border-radius: 10px;
+
+}
+
+.form-group > input:focus{
+
+    background-color: rgba(153, 153, 153, 0.2);
+    padding: 2%;
+    border: 1px solid #0efafe;
+
+}
+
+.form-button{
+
+    margin: 2%;
+    background-color: #60baff;
+    border: none;
+    padding: 2%;
+    padding-left: 3%;
+    padding-right: 3%;
+    border-radius: 10px;
+
+}
+
+.form-button:hover{
+
+    filter: drop-shadow(0px 0px 4px #0efafe);
+    cursor: pointer;
+
+}
+
+.sign-up{
+
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+
+}
+
+.sign-up > a{
+
+    text-decoration: none;
+    color: rgb(50, 166, 255);
+
+}
+
+.sign-up > a:hover{
+
+    text-decoration: underline;
+    color: rgb(0, 113, 200);
+    cursor: pointer;
+
+}

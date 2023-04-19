@@ -1,0 +1,104 @@
+*{
+
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+    background-color: #5c94fc;
+    font-family: sans-serif;
+  }
+
+  
+    header {
+        background-color: #DC143C;
+        padding: 20px;
+        text-align: center;
+        font-size: 3rem;
+    }
+
+    nav {
+        background-color: #FFE4C4;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+        font-size: 1.2rem;
+        border-top: 5px solid #DC143C;
+        border-bottom: 5px solid #DC143C;
+    }
+
+    ul {
+        list-style: none;
+        display: flex;
+    }
+
+    li {
+        margin-right: 20px;
+    }
+
+    a {
+        text-decoration: none;
+        color: black;
+        font-weight: bold;
+        transition: 0.3s ease;
+    }
+
+    a:hover {
+        color: #DC143C;
+    }
+
+  h1 {
+    font-size: 3em;
+    font-style: italic;
+    text-shadow: 2px 2px 2px black;
+    color: white;
+  }
+  
+  #rank {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    width: 50%;
+    padding: 1rem;
+    background-color: #DC143C;
+    border-radius: 1rem;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  }
+  
+  #rank > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #16098ca0;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.5);
+  }
+  
+  #rank > div:nth-child(even) {
+    background-color: #054bcd;
+  }
+  
+  #rank > div:first-child {
+    background-color: #ffff00bb;
+  }
+  
+  h3, p {
+    margin: 0;
+    color: #fff;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px #000;
+  }
+  
+  h3 {
+    font-weight: bold;
+  }
+  
+  p {
+    font-style: italic;
+  }

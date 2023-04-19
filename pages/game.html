@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Game</title>
+
+    <link rel="icon" type="image/x-icon" href="../Imagens/icon.png">
+    <link rel="stylesheet" href="../CSS/style.css">
+    <script src="../JS/script.js" type="module" defer></script>
+
+</head>
+<body>
+
+    <div class="game-bord">
+        
+        <div class="end-game" id="end-game"> 
+
+            <div class="pontuacao">
+
+                <p class="description"> Maior tempo </p>
+                <p id="best-time" class="value"> </p>
+
+            </div>
+
+            <div class="pontuacao">
+
+                <p class="description"> Coins </p>
+                <p id="all-time-score" class="value"> </p>
+
+            </div>
+
+            <a class="button-back" href="./lobby.html">Voltar</a>
+            <a class="button-start" id="button-start"> Start </a>
+
+        </div>
+
+        <div class="game-body">
+
+            <div class="sky" style="display: none">
+                    
+                <div style="display: flex; width: 100%; align-items: center; justify-content: space-between;">
+
+                    <p class="timer" id="timer"> </p>
+                    <p class="timer" id="score"> </p>
+
+                </div>
+
+                <img class="clouds5" src="../Imagens/clouds.png">
+                <img class="clouds6" src="../Imagens/clouds.png">
+                <img class="clouds3" src="../Imagens/clouds.png">
+                <img class="clouds4" src="../Imagens/clouds.png"> 
+                <img class="clouds1" src="../Imagens/clouds.png">
+                <img class="clouds2" src="../Imagens/clouds.png"> 
+
+            </div>       
+        
+         <div class="game-area">
+    
+            <div class="bricks-grid">
+
+                <img src="../Imagens/brick.png">
+                <img src="../Imagens/brick.png">
+                <img src="../Imagens/brick.png">
+                <img src="../Imagens/brick.png">
+                <img src="../Imagens/brick.png">
+                <img src="../Imagens/brick.png">
+
+            </div>
+
+            <img class="mario" src="../Imagens/mario.png">
+            <img class="pipe" src="../Imagens/pipe.png">
+
+         </div>
+
+        </div>
+
+        <div class="floor">
+            <div class="grass"></div>
+            <div class="dirt"></div>
+        </div>
+        
+    </div>
+    
+</body>
+</html>
