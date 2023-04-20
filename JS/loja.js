@@ -163,11 +163,11 @@ async function comprarHabilidade(habilidadeEscolhida){
         
         }else if(habilidadeEscolhida == 2){
 
-            if(userData.coins >= 500){
+            if(userData.coins >= 2500){
 
                 userData.habilidades = Object.values(userData.habilidades);
                 userData.habilidades.push(2)
-                userData.coins = userData.coins - 500
+                userData.coins = userData.coins - 2500
                 userData.habilidades.sort((a, b) => a.pontos - b.pontos);
                 console.log(userData)
 
