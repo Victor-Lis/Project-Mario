@@ -15,7 +15,15 @@ const rankRef = ref(database, `ranks/`);
 let userData;
 let rankData = [];
 let habilidades = []
-let duplicacao = false
+
+const habilidadesAdquiridas = {
+
+  duplicacao: false,
+  superPulo: false,
+  shield: false
+
+}
+
 const AllTimeScore = document.getElementById("all-time-score")
 const bestTime = document.getElementById("best-time")
 const coins = document.getElementById("coins")
@@ -41,9 +49,21 @@ await get(userRef)
       habilidades = Object.values(userData.habilidades)
       habilidades.map(value => {
 
+        if(value == 1){
+
+          habilidadesAdquiridas.superPulo = true;
+
+        }
+
+        if(value == 2){
+
+          habilidadesAdquiridas.shield = true;
+
+        }
+
         if(value == 3){
 
-          duplicacao = true;
+          habilidadesAdquiridas.duplicacao = true;
 
         }
 
@@ -156,7 +176,7 @@ document.addEventListener("click", async function(e){
     if(tracks.jumpTrack == 0){
 
       mario.classList.add("mario-animation")
-      if(duplicacao){
+      if(habilidadesAdquiridas.duplicacao){
 
         pontos = pontos + 2
         passadas.coins = passadas.coins + 2
@@ -188,7 +208,10 @@ document.addEventListener("click", async function(e){
 
 })
 
-document.addEventListener("keydown", async function(e){
+document.addEventListener("keypress", async function(e){
+
+    console.log(typeof e.key)
+    console.log(`${e.key} == 1: ${e.key == "1"} && ${habilidadesAdquiridas.superPulo} && ${pontos >= 5}`)
 
     if(tracks.gameTrack == 1 && tracks.startGameTrack == 0){
 
@@ -197,7 +220,7 @@ document.addEventListener("keydown", async function(e){
           if(tracks.jumpTrack == 0){
 
             mario.classList.add("mario-animation")
-            if(duplicacao){
+            if(habilidadesAdquiridas.duplicacao){
 
               pontos = pontos + 2
               passadas.coins = passadas.coins + 2
@@ -224,9 +247,30 @@ document.addEventListener("keydown", async function(e){
 
               tracks.jumpTrack = 0    
 
-            }, 1250)
+            }, 1000)
 
       }  
+
+      if(e.key == "1" && habilidadesAdquiridas.superPulo && pontos >= 50){
+
+        mario.classList.add("mario-super-animation")
+        tracks.jumpTrack = 1
+        pontos = pontos - 50
+        score.innerText = `Score: ${pontos}`
+
+        setTimeout(() => {
+
+          mario.classList.remove("mario-super-animation")      
+
+        },500)
+
+        setTimeout(() => {
+
+          tracks.jumpTrack = 0    
+
+        }, 1000)
+
+      }
 
     }
 
@@ -331,108 +375,122 @@ setInterval( function(){
 
     }
 
-    if(topPersonagem < 10 && leftPipe > 0 && leftPipe < 95 || topPersonagem > 10 && leftBrick > -50 && leftBrick < 25 && tracks.gameTrack == 1){
+    if(topPersonagem < 10 && leftPipe > 0 && leftPipe < 95 || topPersonagem < 20 && topPersonagem > 10 && leftBrick > -50 && leftBrick < 25 && tracks.gameTrack == 1){
 
-      som()
-      tracks.gameTrack = 0
+      console.log("Habilidade 2:"+habilidadesAdquiridas.shield)
 
-      mario.src = "../Imagens/game-over.png"
-      mario.style.width = "60px"
-      mario.style.height = "65px"
+      if(habilidadesAdquiridas.shield){
 
-      mario.classList.add("game-over-animation")
-      bricks.classList.remove("bricks-animation")
-      pipe.classList.remove("pipe-animation")
+        setTimeout(() => {
 
-      cloud1.classList.remove("cloud-movement1")
-      cloud2.classList.remove("cloud-movement2")
-      cloud3.classList.remove("cloud-movement3")
-      cloud4.classList.remove("cloud-movement4")
-      cloud5.classList.remove("cloud-movement5")
-      cloud6.classList.remove("cloud-movement6")
-      clearInterval(interval)
-    
-      setTimeout(async () => {
+          habilidadesAdquiridas.shield = false
 
-        let coins;
+        }, 1000)
 
-        if(duplicacao){
+      }else{
 
-          coins = passadas.coins / 2.5;
-          coins = parseInt(coins)
-          passadas.coins = 0
+        som()
+        tracks.gameTrack = 0
+  
+        mario.src = "../Imagens/game-over.png"
+        mario.style.width = "60px"
+        mario.style.height = "65px"
+  
+        mario.classList.add("game-over-animation")
+        bricks.classList.remove("bricks-animation")
+        pipe.classList.remove("pipe-animation")
+  
+        cloud1.classList.remove("cloud-movement1")
+        cloud2.classList.remove("cloud-movement2")
+        cloud3.classList.remove("cloud-movement3")
+        cloud4.classList.remove("cloud-movement4")
+        cloud5.classList.remove("cloud-movement5")
+        cloud6.classList.remove("cloud-movement6")
+        clearInterval(interval)
+      
+        setTimeout(async () => {
+  
+          let coins;
+  
+          if(habilidadesAdquiridas.duplicacao){
+  
+            coins = passadas.coins / 2.5;
+            coins = parseInt(coins)
+            passadas.coins = 0
+  
+          }else{
+  
+            coins = passadas.coins / 5;
+            coins = parseInt(coins)
+            passadas.coins = 0
+  
+          }
+          console.log("Coins: "+coins)
+  
+          mario.style.display = "none"
+          userData.pontos = userData.pontos + pontos;
+          AllTimeScore.innerText = userData.pontos;
+          userData.coins = userData.coins + coins;
+          this.coins.innerText = userData.coins
+  
+          const setUserRefCoins = ref(database, `usuarios/${useruid}/coins`)
+          await set(setUserRefCoins, userData.coins)
+  
+          if(hr < 10){
+  
+            hr = `0${hr}`
+  
+          }
+          if(min < 10){
+  
+            min = `0${min}`
+  
+          }
+          if(sec < 10){
+  
+            sec = `0${sec}`
+  
+          }
+  
+          if(hr > parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min > parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min == parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) && sec > parseInt(userData.melhorTempo[6]+userData.melhorTempo[7])){
+  
+            userData.melhorTempo = hr+":"+min+":"+sec
+            bestTime.innerText = userData.melhorTempo
+  
+            const setUserRefTime = ref(database, `usuarios/${useruid}/melhorTempo`)
+  
+            await set(setUserRefTime, userData.melhorTempo)
+  
+          }
+  
+          const setUserRefPoints = ref(database, `usuarios/${useruid}/pontos`)
+  
+          await set(setUserRefPoints, userData.pontos)
+  
+        }, 1500);
+  
+        setTimeout(() => {
+  
+          setNewRank()
+          tracks.startGameTrack = 1;
+          mario.style.width = "130px"
+          mario.style.height = "130px"
+          pipe.style.right = "-10vw"
+          mario.style.bottom = "0px"
+          mario.style.display = "inherit"
+          bricks.style.display = "grid"
+          bricks.style.right = "-10vw"
+          mario.classList.remove("game-over-animation")
+          mario.src = "../Imagens/mario.png"
+          sec = 0, min = 0, hr = 0, pontos = 0
+          tracks.gameTrack = 1
+          tracks.jumpTrack = 1
+          tracks.brickTrack = Math.floor(Math.random() * 5) + 1
+          endGame.style.display = "flex"
+  
+        }, 3500);
 
-        }else{
-
-          coins = passadas.coins / 5;
-          coins = parseInt(coins)
-          passadas.coins = 0
-
-        }
-        console.log("Coins: "+coins)
-
-        mario.style.display = "none"
-        userData.pontos = userData.pontos + pontos;
-        AllTimeScore.innerText = userData.pontos;
-        userData.coins = userData.coins + coins;
-        this.coins.innerText = userData.coins
-
-        const setUserRefCoins = ref(database, `usuarios/${useruid}/coins`)
-        await set(setUserRefCoins, userData.coins)
-
-        if(hr < 10){
-
-          hr = `0${hr}`
-
-        }
-        if(min < 10){
-
-          min = `0${min}`
-
-        }
-        if(sec < 10){
-
-          sec = `0${sec}`
-
-        }
-
-        if(hr > parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min > parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min == parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) && sec > parseInt(userData.melhorTempo[6]+userData.melhorTempo[7])){
-
-          userData.melhorTempo = hr+":"+min+":"+sec
-          bestTime.innerText = userData.melhorTempo
-
-          const setUserRefTime = ref(database, `usuarios/${useruid}/melhorTempo`)
-
-          await set(setUserRefTime, userData.melhorTempo)
-
-        }
-
-        const setUserRefPoints = ref(database, `usuarios/${useruid}/pontos`)
-
-        await set(setUserRefPoints, userData.pontos)
-
-      }, 1500);
-
-      setTimeout(() => {
-
-        setNewRank()
-        tracks.startGameTrack = 1;
-        mario.style.width = "130px"
-        mario.style.height = "130px"
-        pipe.style.right = "-10vw"
-        mario.style.bottom = "0px"
-        mario.style.display = "inherit"
-        bricks.style.display = "grid"
-        bricks.style.right = "-10vw"
-        mario.classList.remove("game-over-animation")
-        mario.src = "../Imagens/mario.png"
-        sec = 0, min = 0, hr = 0, pontos = 0
-        tracks.gameTrack = 1
-        tracks.jumpTrack = 1
-        tracks.brickTrack = Math.floor(Math.random() * 5) + 1
-        endGame.style.display = "flex"
-
-      }, 3500);
+      }
 
     }
 
