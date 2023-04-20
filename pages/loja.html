@@ -1,0 +1,73 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Loja de Habilidades - Mario Game</title>
+
+    <link rel="stylesheet" href="../CSS/lojaStyle.css">
+
+    <script src="../JS/loja.js" type="module" defer></script>
+
+  </head>
+    <body>
+        <header>
+            <h3 style="color: #fff"> Mario Game </h3>
+          </header>
+          <nav>
+            <ul>
+              <li><a href="#dados-do-usuario">Dados do usuário</a></li>
+              <li><a href="#loja-de-habilidades">Loja de habilidades</a></li>
+              <li><a href="./rank.html"> Rank </a></li>
+              <li><a href="./lobby.html"> Lobby </a></li>
+            </ul>
+          </nav>
+          <main>
+
+            <div class="coins">
+                
+                <p class="title"> Coins </p>       
+                <p style="flex: 1"></p>        
+                <p class="data" id="coins"> 0 </p>
+
+            </div>
+
+            <h1 style="color: #fff; margin-bottom: 2.5%; font-size: 2rem; filter: drop-shadow(01px 01px 2px #ff741e);"> Habilidades </h1>
+
+            <div class="card" id="card1"> 
+
+                <h2> Habilidade 1 </h2>
+
+                <p> <strong> Habilidade: </strong> Pulo alto </p>
+                <p> <strong> Tipo: </strong> Ativa </p>
+                <p> <strong> Uso: </strong> Gastará 50 pontos </p>
+                <p> <strong> Preço: </strong> 150 </p>
+                <button id="1"> Comprar! </button>
+
+            </div>
+
+            <div class="card" id="card2"> 
+
+                <h2> Habilidade 2 </h2>
+
+                <p> <strong> Habilidade: </strong> Invencibilidade </p>
+                <p> <strong> Tipo: </strong> Ativa </p>
+                <p> <strong> Uso: </strong> Gastará 250 pontos </p>
+                <p> <strong> Preço: </strong> 500 </p>
+                <button id="2"> Comprar! </button>
+
+            </div>
+
+            <div class="card" id="card3"> 
+
+                <h2> Habilidade 3 </h2>
+
+                <p> <strong> Habilidade: </strong> Duplicação </p>
+                <p> <strong> Tipo: </strong> Passiva </p>
+                <p> <strong> Uso: </strong> Duplicará o ganho de pontos e coins</p>
+                <p> <strong> Preço: </strong> 10000 </p>
+                <button id="3"> Comprar! </button>
+
+            </div>
+
+          </main>
+    </body>      
+</html>

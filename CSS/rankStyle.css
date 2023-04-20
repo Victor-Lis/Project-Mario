@@ -36,6 +36,9 @@ body {
 
     li {
         margin-right: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     a {
@@ -102,3 +105,26 @@ body {
   p {
     font-style: italic;
   }
+
+  @media (max-width: 510px) {
+    
+    ul{
+
+        flex-direction: column;
+
+    }
+
+    li{
+
+        margin: 10px 0px;
+        padding: 10px 0px;
+
+    }
+
+    nav{
+
+        justify-content: center;
+
+    }
+
+}

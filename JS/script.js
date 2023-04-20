@@ -14,8 +14,12 @@ const rankRef = ref(database, `ranks/`);
 
 let userData;
 let rankData = [];
+let habilidades = []
+let duplicacao = false
 const AllTimeScore = document.getElementById("all-time-score")
 const bestTime = document.getElementById("best-time")
+const coins = document.getElementById("coins")
+const rankPosition = document.getElementById("rankPosition")
 
 await get(userRef)  
   .then((snapshot) => {
@@ -24,6 +28,26 @@ await get(userRef)
       console.log(userData);
       AllTimeScore.innerText = userData.pontos
       bestTime.innerText = userData.melhorTempo
+      coins.innerText = userData.coins
+      if(userData.posicaoNoRank != ""){
+
+        rankPosition.innerText = `${userData.posicaoNoRank}°`
+
+      }else{
+
+        rankPosition.innerText = `Não está`
+
+      }
+      habilidades = Object.values(userData.habilidades)
+      habilidades.map(value => {
+
+        if(value == 3){
+
+          duplicacao = true;
+
+        }
+
+      })
     }else{
       console.log("Usuário não encontrado");
     }
@@ -62,7 +86,8 @@ const buttonStart = document.getElementById("button-start")
 
 const passadas = {
 
-  passadasBrick: 0
+  passadasBrick: 0,
+  coins: 0,
 
 }
 
@@ -71,6 +96,7 @@ const tracks = {
   pipeTrack: 0,
   gameTrack: 0,
   jumpTrack: 1,
+  startGameTrack: 1,
   brickTrack: Math.floor(Math.random() * 5) + 1,
 
 }
@@ -119,14 +145,29 @@ function watch(){
 }  
 
 
+
+
 document.addEventListener("click", async function(e){
 
-  if(tracks.gameTrack == 1){
+  // console.log(tracks.startGameTrack)
+
+  if(tracks.gameTrack == 1 && tracks.startGameTrack == 0){
 
     if(tracks.jumpTrack == 0){
 
       mario.classList.add("mario-animation")
-      pontos++
+      if(duplicacao){
+
+        pontos = pontos + 2
+        passadas.coins = passadas.coins + 2
+
+      }else{
+
+        pontos++
+        passadas.coins++
+
+      }
+      
       score.innerText = `Score: ${pontos}`
       tracks.jumpTrack = 1
 
@@ -134,25 +175,40 @@ document.addEventListener("click", async function(e){
 
       setTimeout(() => {
 
-          mario.classList.remove("mario-animation")    
-          tracks.jumpTrack = 0      
+          mario.classList.remove("mario-animation")     
 
       },500)
 
+      setTimeout(() => {
+
+          tracks.jumpTrack = 0    
+
+      }, 1250)
   }
 
 })
 
 document.addEventListener("keydown", async function(e){
 
-    if(tracks.gameTrack == 1){
+    if(tracks.gameTrack == 1 && tracks.startGameTrack == 0){
 
       if(e.key == "W".toLowerCase()){
 
           if(tracks.jumpTrack == 0){
 
             mario.classList.add("mario-animation")
-            pontos++
+            if(duplicacao){
+
+              pontos = pontos + 2
+              passadas.coins = passadas.coins + 2
+
+            }else{
+
+              pontos++
+              passadas.coins++
+
+            }
+            
             score.innerText = `Score: ${pontos}`
             tracks.jumpTrack = 1
 
@@ -160,10 +216,15 @@ document.addEventListener("keydown", async function(e){
 
             setTimeout(() => {
 
-                mario.classList.remove("mario-animation")    
-                tracks.jumpTrack = 0      
+              mario.classList.remove("mario-animation")      
 
             },500)
+
+            setTimeout(() => {
+
+              tracks.jumpTrack = 0    
+
+            }, 1250)
 
       }  
 
@@ -174,6 +235,11 @@ document.addEventListener("keydown", async function(e){
 document.getElementById("button-start").addEventListener("click", () => {
 
   startGame()
+  setTimeout(() => {
+
+    tracks.startGameTrack = 0
+
+  }, 200)
 
 })
 
@@ -274,13 +340,6 @@ setInterval( function(){
       mario.style.width = "60px"
       mario.style.height = "65px"
 
-      cloud1.style.left = leftCloud1+"px"
-      cloud2.style.left = leftCloud2+"px"
-      cloud3.style.left = leftCloud3+"px"
-      cloud4.style.left = leftCloud4+"px"
-      cloud5.style.left = leftCloud5+"px"
-      cloud6.style.left = leftCloud6+"px"
-
       mario.classList.add("game-over-animation")
       bricks.classList.remove("bricks-animation")
       pipe.classList.remove("pipe-animation")
@@ -294,10 +353,32 @@ setInterval( function(){
       clearInterval(interval)
     
       setTimeout(async () => {
-        
+
+        let coins;
+
+        if(duplicacao){
+
+          coins = passadas.coins / 2.5;
+          coins = parseInt(coins)
+          passadas.coins = 0
+
+        }else{
+
+          coins = passadas.coins / 5;
+          coins = parseInt(coins)
+          passadas.coins = 0
+
+        }
+        console.log("Coins: "+coins)
+
         mario.style.display = "none"
         userData.pontos = userData.pontos + pontos;
         AllTimeScore.innerText = userData.pontos;
+        userData.coins = userData.coins + coins;
+        this.coins.innerText = userData.coins
+
+        const setUserRefCoins = ref(database, `usuarios/${useruid}/coins`)
+        await set(setUserRefCoins, userData.coins)
 
         if(hr < 10){
 
@@ -314,17 +395,6 @@ setInterval( function(){
           sec = `0${sec}`
 
         }
-
-        // console.log(`${hr}:${min}:${sec}`)
-        // console.log(userData.melhorTempo)
-        // console.log(`Hora:${parseInt(userData.melhorTempo[0]+userData.melhorTempo[1])} Minuto:${parseInt(userData.melhorTempo[3]+userData.melhorTempo[4])} Sec:${parseInt(userData.melhorTempo[6]+userData.melhorTempo[7])}`)
-        // console.log(`Condições: hr == ${hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1])}`)
-        // console.log(`Condições: min == ${min == parseInt(userData.melhorTempo[3]+userData.melhorTempo[4])}`)
-        // console.log(`Condições: sec > ${sec > parseInt(userData.melhorTempo[6]+userData.melhorTempo[7])}`)
-        // console.log("Condição: hr > "+hr > parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]))
-        // console.log("Condição: hr == && min > "+hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min > parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]))
-        // console.log("Condição: hr == && min == && sec > "+hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min == parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) && sec > parseInt(userData.melhorTempo[6]+userData.melhorTempo[7]))
-        // console.log(hr > parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min > parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min == parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) && sec > parseInt(userData.melhorTempo[6]+userData.melhorTempo[7]) )
 
         if(hr > parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min > parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) || hr == parseInt(userData.melhorTempo[0]+userData.melhorTempo[1]) && min == parseInt(userData.melhorTempo[3]+userData.melhorTempo[4]) && sec > parseInt(userData.melhorTempo[6]+userData.melhorTempo[7])){
 
@@ -346,6 +416,7 @@ setInterval( function(){
       setTimeout(() => {
 
         setNewRank()
+        tracks.startGameTrack = 1;
         mario.style.width = "130px"
         mario.style.height = "130px"
         pipe.style.right = "-10vw"
@@ -399,8 +470,8 @@ async function setNewRank(){
     if(!jaAdd){
       
       let indexOfUser = initialRankData.findIndex(position => position.userUid == useruid)
-      console.log(useruid == position.userUid)
-      console.log(indexOfUser)
+      // console.log(useruid == position.userUid)
+      // console.log(indexOfUser)
       
       if(position.pontos < userData.pontos && indexOfUser != -1){
 
@@ -408,11 +479,15 @@ async function setNewRank(){
 
           jaAdd = !jaAdd
           initialRankData.shift()
+          rankPosition.innerText = `${indexOfUser+1}°`
+          userData.posicaoNoRank = indexOfUser  
           initialRankData.unshift({username: userData.username, userUid: useruid, pontos: userData.pontos})
 
         }else{
 
           initialRankData.splice(indexOfUser, 1, {username: userData.username, userUid: useruid, pontos: userData.pontos})
+          rankPosition.innerText = `${indexOfUser+1}°`
+          userData.posicaoNoRank = indexOfUser
           jaAdd = !jaAdd
 
         }
@@ -421,10 +496,13 @@ async function setNewRank(){
 
         jaAdd = !jaAdd
         initialRankData.splice(index, 0, {username: userData.username, userUid: useruid, pontos: userData.pontos})
+        userData.posicaoNoRank = index
+        console.log(userData.posicaoNoRank)
+        rankPosition.innerText = `${userData.posicaoNoRank+1}°`
 
       }
 
-      console.log(jaAdd)
+      // console.log(jaAdd)
 
     }
 
@@ -437,9 +515,9 @@ async function setNewRank(){
 
   }
 
-  console.log(rankData)
+  // console.log(rankData)
   rankData.sort((a, b) => b.pontos - a.pontos);
-  console.log(rankData)
+  // console.log(rankData)
 
   let updates = rankData.reduce((acc, obj, index) => {
     acc[index] = obj;
@@ -454,5 +532,15 @@ async function setNewRank(){
   .catch((error) => {
     console.error("Erro ao atualizar os dados:", error);
   });
+
+  let newRef = ref(database, `usuarios/${useruid}/`)
+  await update(newRef, userData)
+  .then(() => {
+    console.log("Dados atualizados com sucesso!");
+  })
+  .catch((error) => {
+    console.error("Erro ao atualizar os dados:", error);
+  });
+
 
 }

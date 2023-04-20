@@ -82,6 +82,8 @@ async function cadastrar(auth, email, password, username) {
         habilidades: "",
         habilidadesEmUso: "",
         melhorTempo: "00:00:00",
+        coins: 0,
+        posicaoNoRank: "",
       };
 
       // Salvar o objeto do usuário no banco de dados

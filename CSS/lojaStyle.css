@@ -1,0 +1,169 @@
+*{
+
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+
+}
+
+header {
+    background-color: #DC143C;
+    padding: 20px;
+    text-align: center;
+    font-size: 3rem;
+}
+
+nav {
+    background-color: #FFE4C4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 1.2rem;
+    border-top: 5px solid #DC143C;
+    border-bottom: 5px solid #DC143C;
+}
+
+ul {
+    list-style: none;
+    display: flex;
+}
+
+li {
+    margin-right: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+a:hover {
+    color: #DC143C;
+}
+
+main {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #1E90FF;
+
+}
+
+main > .card{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2% 2.5%;
+    background-color: #FFE4C4;
+    box-shadow: 0px 0px 10px #000;
+    border-radius: 10px;
+    margin-bottom: 5%;
+    text-align: center;
+    min-width: 200px;
+    max-width: 200px;
+
+}
+
+main > .coins{
+
+    flex: 1; 
+    display: flex; 
+    flex-direction: row; 
+    justify-content: baseline; 
+    align-self: end; 
+    background-color: #16098c61;
+    margin-right: 1.5%;
+    padding: 01% 2%;
+    margin-top: 1%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px 3px #e4cd00;
+
+}
+
+main > .coins > .title{
+
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    flex: 1;
+    padding-right: 5%;
+
+}
+
+main > .coins > .data{
+
+    display: flex;
+    align-items: end;
+    color: #e4cd00;
+    flex: 1;
+    padding-right: 5%;
+
+}
+
+main > .card > h2{
+
+    margin: 5.5% 0%;
+    color: #16098c;
+    filter: drop-shadow(01px 01px 2px #1E90FF);
+
+}
+
+main > .card > p{
+
+    margin: 5.5% 0%;
+
+}
+
+main > .card > button{
+
+    background-color: rgb(129, 129, 129, 0.0);
+    border: none;
+    font-size: 1.5rem;
+    color: #DC143C;
+    filter: drop-shadow(01px 01px 2px #16098c);
+    transition: 0.5s;
+    margin: 3.5% 0%;
+
+}
+
+main > .card > button:hover{
+
+    transition: 1s;
+    color: rgb(220, 20, 60, 0.5);
+    filter: drop-shadow(01px 01px 2px #16098c);
+    cursor: pointer;
+
+}
+
+@media (max-width: 510px) {
+    
+    ul{
+
+        flex-direction: column;
+
+    }
+
+    li{
+
+        margin: 10px 0px;
+        padding: 10px 0px;
+
+    }
+
+    nav{
+
+        justify-content: center;
+
+    }
+
+}

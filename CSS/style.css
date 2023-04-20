@@ -110,6 +110,7 @@ body{
     width: 40vw;
     height: 40vh;
     opacity: 0.90;
+    right: -10vw;
 
 }
 
@@ -119,6 +120,7 @@ body{
     width: 40vw;
     height: 40vh;
     opacity: 0.90;
+    right: -10vw;
 
 }
 
@@ -128,6 +130,7 @@ body{
     width: 30vw;
     height: 30vh;
     opacity: 0.75;
+    right: -10vw;
 
 }
 
@@ -137,7 +140,8 @@ body{
     width: 30vw;
     height: 30vh;
     opacity: 0.75;
-
+    right: -10vw;
+    
 }
 
 .game-body > .sky > .clouds5{
@@ -146,7 +150,8 @@ body{
     width: 20vw;
     height: 20vh;
     opacity: 0.55;
-
+    right: -10vw;
+   
 }
 
 .game-body > .sky > .clouds6{
@@ -155,7 +160,8 @@ body{
     width: 20vw;
     height: 20vh;
     opacity: 0.55;
-
+    right: -10vw;
+   
 }
 
 .cloud-movement1{
@@ -331,7 +337,7 @@ body{
 
 .end-game > .button-back{
 
-    margin-top: 45%;
+    margin-top: 15%;
     color:rgb(255, 0, 0);
     font-size: 0.75rem;
     transition: 0.5s;
@@ -482,13 +488,13 @@ body{
 
         from{
     
-            right: -30vw;
+            right: -10vw;
     
         }
     
         to{ 
     
-            right: 110vw;
+            right: 150vw;
     
         }
          
@@ -501,7 +507,7 @@ body{
 
     from{
 
-        right: -30vw;
+        right: -50vw;
 
     }
 
