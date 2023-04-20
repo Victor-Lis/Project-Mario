@@ -9,6 +9,12 @@ const buy3 = document.getElementById("3")
 
 const useruid = await sessionStorage.getItem("useruid");
 
+if(useruid == null){
+
+    location.href = "https://project-mario-game-by-victor-lis.netlify.app/"
+  
+}
+
 const app = initializeApp(firebaseConfig);
 
 // Obter uma referência para o nó "usuarios" do banco de dados

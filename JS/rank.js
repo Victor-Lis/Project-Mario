@@ -4,6 +4,12 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebas
 
 const rank = document.getElementById("rank")
 
+if(useruid == null){
+
+  location.href = "https://project-mario-game-by-victor-lis.netlify.app/"
+
+}
+
 let rankType = "coins"
 
 const app = initializeApp(firebaseConfig);

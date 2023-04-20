@@ -31,7 +31,7 @@ const auth = getAuth(app);
 
 // Adicionar um listener de evento para o evento "submit" do formulário
 
-if(location.href == "http://127.0.0.1:5500/" || location.href == "http://localhost:5500/"){
+if(location.href == "http://127.0.0.1:5500/" || location.href == "http://localhost:5500/" || location.href == "https://project-mario-game-by-victor-lis.netlify.app/"){
 
   const form = document.querySelector('form');
   form.addEventListener('submit', async (event) => {
@@ -151,7 +151,7 @@ function setLayout(){
 
 }
 
-if(location.href == "http://127.0.0.1:5500/" || location.href == "http://localhost:5500/"){
+if(location.href == "http://127.0.0.1:5500/" || location.href == "http://localhost:5500/" || location.href == "https://project-mario-game-by-victor-lis.netlify.app/"){
 
   document.getElementById("tradePage").addEventListener("click", () => {
   

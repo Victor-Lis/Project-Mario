@@ -4,6 +4,12 @@ import { firebaseConfig } from "./firebaseConfig.js";
 
 const useruid = sessionStorage.getItem("useruid");
 
+if(useruid == null){
+
+  location.href = "https://project-mario-game-by-victor-lis.netlify.app/"
+
+}
+
 console.log(useruid)
 
 const app = initializeApp(firebaseConfig);
