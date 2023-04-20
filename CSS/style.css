@@ -24,6 +24,7 @@ body{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    max-height: 100%;
 
 }
 
@@ -462,26 +463,6 @@ body{
 
 }
 
-@media (min-width: 400px) {
-    
-    @keyframes pipe-animation{ 
-
-        from{
-    
-            right: -10vw;
-    
-        }
-    
-        to{ 
-    
-            right: 110vw;
-    
-        }
-         
-    }
-
-}
-
 @media (max-width: 400px) {
     
     @keyframes pipe-animation{ 
@@ -498,6 +479,28 @@ body{
     
         }
          
+    }
+
+    @keyframes pipe-animation{ 
+
+        from{
+    
+            right: -10vw;
+    
+        }
+    
+        to{ 
+    
+            right: 110vw;
+    
+        }
+         
+    }
+
+    .game-area > .pipe{
+
+        right: -15vw;
+    
     }
 
 }
