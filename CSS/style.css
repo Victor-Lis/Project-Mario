@@ -376,6 +376,21 @@ body{
 
 /*Animations*/
 
+@keyframes pipe-animation{ 
+
+    from{
+
+        right: -10vw;
+
+    }
+
+    to{ 
+
+        right: 150vw;
+
+    }
+     
+}
 
 @keyframes clouds-animation{ 
 
@@ -464,22 +479,6 @@ body{
 }
 
 @media (max-width: 400px) {
-    
-    @keyframes pipe-animation{ 
-
-        from{
-    
-            right: -10vw;
-    
-        }
-    
-        to{ 
-    
-            right: 150vw;
-    
-        }
-         
-    }
 
     @keyframes pipe-animation{ 
 

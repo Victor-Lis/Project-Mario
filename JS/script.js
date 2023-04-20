@@ -4,12 +4,6 @@ import { firebaseConfig } from "./firebaseConfig.js";
 
 const useruid = await sessionStorage.getItem("useruid");
 
-if(useruid == null){
-
-  location.href = "https://project-mario-game-by-victor-lis.netlify.app/"
-
-}
-
 const app = initializeApp(firebaseConfig);
 
 const database = getDatabase();
@@ -155,7 +149,7 @@ function watch(){
 
 document.addEventListener("click", async function(e){
 
-  // console.log(tracks.startGameTrack)
+  console.log(tracks.startGameTrack)
 
   if(tracks.gameTrack == 1 && tracks.startGameTrack == 0){
 
