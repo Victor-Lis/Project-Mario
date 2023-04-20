@@ -18,36 +18,44 @@
         
         <div class="end-game" id="end-game"> 
 
-            <div class="pontuacao">
+            <div class="datas">
 
-                <p class="description"> Maior tempo </p>
-                <p id="best-time" class="value"> </p>
+                <div class="pontuacao">
+
+                    <p class="description"> Maior tempo </p>
+                    <p id="best-time" class="value"> </p>
+    
+                </div>
+    
+                <div class="pontuacao">
+    
+                    <p class="description"> Score </p>
+                    <p id="all-time-score" class="value"> </p>
+    
+                </div>
+    
+                <div class="pontuacao">
+    
+                    <p class="description"> Coins </p>
+                    <p id="coins" class="value"> </p>
+    
+                </div>
+    
+                <div class="pontuacao">
+    
+                    <p class="description"> Posição no Rank </p>
+                    <p id="rankPosition" class="value"> Não está </p>
+    
+                </div>     
+
+            </div>       
+
+            <div class="buttons">
+
+                <a class="button-back" href="./lobby.html">Voltar</a>
+                <a class="button-start" id="button-start"> Start </a>
 
             </div>
-
-            <div class="pontuacao">
-
-                <p class="description"> Score </p>
-                <p id="all-time-score" class="value"> </p>
-
-            </div>
-
-            <div class="pontuacao">
-
-                <p class="description"> Coins </p>
-                <p id="coins" class="value"> </p>
-
-            </div>
-
-            <div class="pontuacao">
-
-                <p class="description"> Posição no Rank </p>
-                <p id="rankPosition" class="value"> Não está </p>
-
-            </div>            
-
-            <a class="button-back" href="./lobby.html">Voltar</a>
-            <a class="button-start" id="button-start"> Start </a>
 
         </div>
 
@@ -55,9 +63,16 @@
 
             <div class="sky" style="display: none">
                     
-                <div style="display: flex; width: 100%; align-items: center; justify-content: space-between;">
+                <div style="display: flex; width: 100%; align-items: start; justify-content: space-between;">
 
                     <p class="timer" id="timer"> </p>
+                    <div class="lifes">  
+
+                        <img id="life1" src="../Imagens/green mushroom.png">
+                        <img id="life2" style="display: none;" src="../Imagens/green mushroom.png">
+                        <img id="life3" style="display: none;" src="../Imagens/green mushroom.png">
+
+                    </div>
                     <p class="timer" id="score"> </p>
 
                 </div>

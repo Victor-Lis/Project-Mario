@@ -9,6 +9,8 @@ const buy3 = document.getElementById("3")
 
 const useruid = await sessionStorage.getItem("useruid");
 
+console.log(useruid)
+
 if(useruid == null){
 
     location.href = "https://project-mario-game-by-victor-lis.netlify.app/"
@@ -22,40 +24,6 @@ const database = getDatabase();
 
 const userRef = ref(database, `usuarios/${useruid}`);
 let userData;
-let habilidades = []
-
-await get(userRef).then((snapshot) => {
-
-    if(snapshot.exists()){
-        userData = snapshot.val()
-        console.log(userData.habilidades == "")
-
-        if(userData.habilidades != ""){
-
-            userData.habilidades.map(value => {
-
-                if(value == 1){
-    
-                    buy1.style.display = "none"
-    
-                }
-    
-                if(value == 2){
-    
-                    buy2.style.display = "none"
-    
-                }
-    
-            })
-            coins.innerText = userData.coins
-
-        }
-
-    }else{
-        console.log("Usuário não encontrado");
-    }
-
-})
 
 async function getDatas(){
 
@@ -63,6 +31,8 @@ async function getDatas(){
 
         if(snapshot.exists()){
             userData = snapshot.val()
+            console.log(userData)
+            coins.innerText = userData.coins
                 if(userData.habilidades != ""){
 
                     userData.habilidades.map(value => {
@@ -86,11 +56,11 @@ async function getDatas(){
                         }
 
                     })
+                    
                     coins.innerText = userData.coins
-
-          }else{
+                } 
+        }else{
             console.log("Usuário não encontrado");
-          }
         }
 
     })
@@ -211,5 +181,5 @@ async function comprarHabilidade(habilidadeEscolhida){
     }
 }
 
-getDatas()
+await getDatas()
 setInterval(() => {getDatas()}, 1500)

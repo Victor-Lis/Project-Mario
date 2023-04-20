@@ -20,7 +20,7 @@ const habilidadesAdquiridas = {
 
   duplicacao: false,
   superPulo: false,
-  shield: false
+  shield: false,
 
 }
 
@@ -48,6 +48,8 @@ await get(userRef)
       }
       habilidades = Object.values(userData.habilidades)
       habilidades.map(value => {
+
+        console.log("Habilidade: "+value)
 
         if(value == 1){
 
@@ -98,6 +100,10 @@ const cloud4 = document.querySelector(".clouds4")
 const cloud5 = document.querySelector(".clouds5")
 const cloud6 = document.querySelector(".clouds6")
 
+const life1 = document.querySelector("#life1")
+const life2 = document.querySelector("#life2")
+const life3 = document.querySelector("#life3")
+
 const timer = document.getElementById("timer")
 const score = document.getElementById("score")
 
@@ -121,7 +127,7 @@ const tracks = {
 
 }
 
-var sec = 0, min = 0, hr = 0, limite, interval, play_sound, track = 0, pontos = 0;
+var sec = 0, min = 0, hr = 0, limite, interval, play_sound, track = 0, pontos = 0, vidas = 1;
 score.innerText = `Score: ${pontos}`
 
 setInterval(1, watch())
@@ -289,6 +295,10 @@ document.getElementById("button-start").addEventListener("click", () => {
 
 function startGame(){
 
+  life1.style.filter = "grayscale(0)"
+  life2.style.filter = "grayscale(0)"
+  life3.style.filter = "grayscale(0)"
+
   interval = setInterval(watch, 1000)
 
   tracks.gameTrack = 1 
@@ -306,6 +316,18 @@ function startGame(){
   cloud4.classList.add("cloud-movement4")
   cloud5.classList.add("cloud-movement5")
   cloud6.classList.add("cloud-movement6")
+
+  if(habilidadesAdquiridas.shield){
+    
+    vidas = 3;
+    life2.style.display = "inherit"
+    life3.style.display = "inherit"
+
+  }else{
+
+
+
+  }
 
   sky.style.display = "inherit"
 
@@ -379,15 +401,29 @@ setInterval( function(){
 
       console.log("Habilidade 2:"+habilidadesAdquiridas.shield)
 
-      if(habilidadesAdquiridas.shield){
+      if(vidas == 3){
 
         setTimeout(() => {
 
-          habilidadesAdquiridas.shield = false
+          vidas = 2;
+          life3.style.filter = "grayscale(1)"
 
-        }, 1000)
+        }, 250)
+
+      }else if(vidas == 2){
+
+        setTimeout(() => {
+
+          vidas = 1;
+          life2.style.filter = "grayscale(1)"
+
+        }, 250)
 
       }else{
+        
+        vidas = 0;
+        life1.style.filter = "grayscale(1)"
+
 
         som()
         tracks.gameTrack = 0
