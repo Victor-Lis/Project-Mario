@@ -538,7 +538,7 @@ async function setNewRank(){
           jaAdd = !jaAdd
           initialRankData.shift()
           rankPosition.innerText = `${indexOfUser+1}°`
-          userData.posicaoNoRank = indexOfUser  
+          userData.posicaoNoRank = indexOfUser+1  
           initialRankData.unshift({username: userData.username, userUid: useruid, pontos: userData.pontos})
 
         }else{
