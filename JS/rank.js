@@ -3,6 +3,7 @@ import { getDatabase, ref, get, } from "https://www.gstatic.com/firebasejs/9.19.
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.19.1/firebase-app.js";
 
 const rank = document.getElementById("rank")
+const useruid = sessionStorage.getItem("useruid");
 
 if(useruid == null){
 
