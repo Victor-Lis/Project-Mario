@@ -81,7 +81,7 @@ main > div > a:hover{
 
     transition: 1s;
     color: rgb(220, 20, 60, 0.5);
-    filter: drop-shadow(01px 01px 2px #16098c);
+    filter: drop-shadow(01px 01px 2px #09728c);
     cursor: pointer;
 
 }

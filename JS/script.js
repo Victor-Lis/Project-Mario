@@ -397,7 +397,7 @@ setInterval( function(){
 
     }
 
-    if(topPersonagem < 10 && leftPipe > 0 && leftPipe < 95 || topPersonagem < 20 && topPersonagem > 10 && leftBrick > -50 && leftBrick < 25 && tracks.gameTrack == 1){
+    if(topPersonagem < 10 && leftPipe > 0 && leftPipe < 95 || topPersonagem > 10 && leftBrick > -50 && leftBrick < 59 && tracks.gameTrack == 1){
 
       console.log("Habilidade 2:"+habilidadesAdquiridas.shield)
 

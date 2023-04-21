@@ -123,9 +123,9 @@ body{
 
 .lifes > img{
 
-    width: 75px;
+    width: 60px;
     margin: 2%;
-    transition: .6s;
+    transition: .2s;
 
 }
 
